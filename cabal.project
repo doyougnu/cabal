@@ -36,6 +36,7 @@ constraints: time >= 1.12
 --
 package Cabal
   ghc-options: -fno-ignore-asserts
+  profiling: True
 
 package cabal-testsuite
   ghc-options: -fno-ignore-asserts
@@ -53,4 +54,5 @@ package cabal-install-solver
   ghc-options: -fno-ignore-asserts
 
 package cabal-install
-  ghc-options: -fno-ignore-asserts
+  ghc-options: -fno-ignore-asserts -prof
+  profiling: True
