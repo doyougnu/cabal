@@ -225,7 +225,6 @@ import Data.Data (Data)
 import Data.Either (partitionEithers)
 import Data.Function (on)
 import Data.Functor.Identity (Identity (..))
-import Data.Int (Int16, Int32, Int64, Int8)
 import Data.List (dropWhileEnd, intercalate, intersperse, isPrefixOf, isSuffixOf, nub, nubBy, partition, sort, sortBy, unfoldr)
 import Data.List.NonEmpty (NonEmpty ((:|)), head, init, last, nonEmpty, tail)
 import Data.Map (Map)
@@ -236,7 +235,6 @@ import Data.Set (Set)
 import Data.String (IsString (..))
 import Data.Typeable (TypeRep, Typeable, typeRep)
 import Data.Void (Void, absurd, vacuous)
-import Data.Word (Word, Word16, Word32, Word64, Word8)
 import Distribution.Compat.Binary (Binary (..))
 import Distribution.Compat.Semigroup (Semigroup (..), gmappend, gmempty)
 import GHC.Generics (Generic (..), K1 (unK1), M1 (unM1), U1 (U1), V1, (:*:) ((:*:)), (:+:) (L1, R1))
@@ -250,6 +248,11 @@ import Distribution.Compat.NonEmptySet (NonEmptySet)
 import Distribution.Utils.Structured (Structured)
 
 import qualified Debug.Trace
+
+#if __GLASGOW_HASKELL__ <= 912
+import Data.Word (Word, Word16, Word32, Word64, Word8)
+import Data.Int (Int16, Int32, Int64, Int8)
+#endif
 
 -- | New name for 'Text.PrettyPrint.<>'
 (<<>>) :: Disp.Doc -> Disp.Doc -> Disp.Doc
