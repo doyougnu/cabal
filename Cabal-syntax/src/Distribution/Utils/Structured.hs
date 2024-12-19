@@ -73,11 +73,13 @@ module Distribution.Utils.Structured
   , typeName
   ) where
 
-import Data.Int (Int16, Int32, Int64, Int8)
 import Data.List.NonEmpty (NonEmpty)
 import Data.Proxy (Proxy (..))
 import Data.Ratio (Ratio)
-import Data.Word (Word, Word16, Word32, Word64, Word8)
+#if __GLASGOW_HASKELL__ <= 912
+import Data.Word (Word16, Word32, Word64, Word8)
+import Data.Int (Int16, Int32, Int64, Int8)
+#endif
 
 import qualified Control.Monad.Trans.State.Strict as State
 
@@ -398,7 +400,7 @@ instance Structured Char where structure = nominalStructure
 instance Structured Int where structure = nominalStructure
 instance Structured Integer where structure = nominalStructure
 
-instance Structured Data.Word.Word where structure = nominalStructure
+instance Structured Word where structure = nominalStructure
 
 instance Structured Int8 where structure = nominalStructure
 instance Structured Int16 where structure = nominalStructure

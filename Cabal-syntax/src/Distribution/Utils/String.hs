@@ -1,3 +1,4 @@
+{-# LANGUAGE CPP #-}
 module Distribution.Utils.String
   ( -- * Encode to/from UTF8
     decodeStringUtf8
@@ -8,8 +9,11 @@ module Distribution.Utils.String
 import Data.Bits
 import Data.Char (chr, ord)
 import Data.List (dropWhileEnd)
-import Data.Word
 import GHC.Unicode (isSpace)
+
+#if __GLASGOW_HASKELL__ <= 912
+import Data.Word
+#endif
 
 -- | Decode 'String' from UTF8-encoded octets.
 --
